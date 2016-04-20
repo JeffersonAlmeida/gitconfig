@@ -1,0 +1,62 @@
+# This is Git's per-user configuration file.
+[core]
+		# Please adapt and uncomment the following lines:
+		user = Jefferson Almeida
+		email = jefferson.almeida@quintoandar.com.br
+	editor = subl -w
+[user]
+		user = Jefferson Almeida
+	email = jefferson.almeida@quintoandar.com.br
+	name = Jefferson Almeida
+[alias]
+	  co = checkout
+		ck = checkout
+	  ci = commit -v
+		cm = commit -v
+		c = commit -v
+	  st = status
+		s = status
+	  br = branchgit
+	  b = branch
+		l = log
+		sl = shortlog
+		m = merge
+		ds = diff --staged
+		d = diff
+		new = checkout -b
+		ac = !git add -A && git commit -v
+		fr = !git fetch origin && git rebase origin/master
+		ri = rebase -i master
+		done = !git add -A && git status && git commit -v && git checkout master && git merge @{-1} && git push && git checkout @{-1}
+	  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+		pl = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+		alias = "!sh -c '[ $# = 2 ] && git config --global alias.\"$1\" \"$2\" && exit 0 || echo \"usage: git alias <new alias> <original command>\" >&2 && exit 1' -"
+		go = checkout
+		d = branch -D
+		dmd = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative master..develop
+		cl = checkout -- .
+
+[color]
+	ui = true
+[push]
+	default = simple
+
+[commit]
+	template = /Users/jeffalmeida/.gitmessage.txt
+
+[merge]
+	tool = p4mergetool
+[mergetool "p4mergetool"]
+	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
+	trustExitCode = false
+[mergetool]
+	keepBackup = false
+[diff]
+	tool = p4mergetool
+[difftool "p4mergetool"]
+	cmd = " /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE"
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+
